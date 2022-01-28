@@ -1,0 +1,109 @@
+@import 'functions';
+@import 'breakpoints';
+.container {
+    width: rem(1080);
+    height: rem(446);
+    background: $primary-color ;
+    border-radius: rem(10);
+    margin: rem(100) auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'text picture';
+
+    @include breakpoint-down(large) {
+        width: rem(340);
+        height: rem(800);
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr;
+        grid-template-areas: "picture"
+                                "text";
+    }
+}
+
+.text-area {
+    grid-area: text;
+
+    &__header {
+        width: 70%;
+        margin: rem(40) auto;
+        font-size: rem(30);
+        word-spacing: rem(5);
+        color:$header-color;
+        
+        span {
+            color:rgb(165, 38, 197);
+        }
+    }
+    &__desc {
+        width: 70%;
+        color:$text-color;
+        margin: 0 auto rem(40) auto;
+        line-height: rem(25);
+
+    }
+    &__data {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: rem(100) auto;
+
+        h2 {
+            color: $header-color;
+            font-size: rem(25);
+            p {
+               color:$text-color;
+               font-size: rem(15);
+               font-weight:lighter;
+            }
+        }
+        
+    }
+
+
+    @include breakpoint-down(large) {
+
+        grid-area: text;
+
+        &__header {
+            width: 90%;
+            text-align: center;
+            line-height: rem(35);
+            margin: rem(20) auto;
+        }
+
+        &__desc{
+            width: 80%;
+            text-align: center;
+            margin:0 auto;
+        }
+
+        &__data {
+            margin:0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            justify-content: space-around;
+
+            h2 {
+                margin-top: rem(25);
+            }
+            
+        }
+    }
+}
+
+.picture-area {
+    grid-area: picture;
+    filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(250deg) saturate(500%) contrast(0.8);
+    background: url('/images/imageheaderdesktop.jpg') no-repeat;
+    border-radius: 0 rem(10) rem(10) 0 ;
+
+    @include breakpoint-down(large) {
+        background: url('/images/imageheadermobile.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        grid-area: picture;
+        border-radius: rem(10) rem(10) 0 0;
+    }
+}
